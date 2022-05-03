@@ -1,7 +1,6 @@
 package com.springboot.bankproject.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,12 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.springboot.bankproject.model.Customer;
-import com.springboot.bankproject.model.Employee;
 import com.springboot.bankproject.services.BankService;
 import com.springboot.bankproject.services.CustomerService;
-
 
 @RestController
 @RequestMapping("/customer")
@@ -38,7 +34,6 @@ public class CustomerController {
 		return mav;
 		
 	}
-	
 	
 	@GetMapping("/list")
 	public List<Customer> showAllCustomers() {

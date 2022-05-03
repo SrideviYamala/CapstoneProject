@@ -6,6 +6,7 @@ public class Customer {
 	Integer customerId;
     String name;
     Address address;
+    
     List<BankAccount> bankAccounts;
 
     public Customer(Integer customerId,String name, Address address) {

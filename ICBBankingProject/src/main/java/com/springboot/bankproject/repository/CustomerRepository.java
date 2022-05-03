@@ -4,17 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.springboot.bankproject.dao.CustomerDAO;
-import com.springboot.bankproject.model.Address;
 import com.springboot.bankproject.model.Customer;
-import com.springboot.bankproject.model.Employee;
 import com.springboot.bankproject.util.DatabaseConnection;
 
 @Repository
@@ -51,8 +45,6 @@ public class CustomerRepository implements CustomerDAO{
 			        }
 			        return customerList;
 		}
-	    
-	    
 	    
 //		public Customer viewProfile(Integer customerId)
 //	            throws SQLException{

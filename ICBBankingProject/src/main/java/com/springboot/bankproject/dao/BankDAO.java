@@ -2,7 +2,6 @@ package com.springboot.bankproject.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import com.springboot.bankproject.model.Address;
 import com.springboot.bankproject.model.Bank;
 

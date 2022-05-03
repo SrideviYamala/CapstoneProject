@@ -8,7 +8,9 @@ public class BankAccount {
     Integer branchCode;
     Integer customerId;
     double accBalance;
+    
     List<Transaction> transactions;
+    
 	public BankAccount() {
 		super();
 	}

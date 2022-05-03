@@ -1,15 +1,12 @@
 package com.springboot.bankproject.repository;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.springboot.bankproject.dao.BranchDAO;
 import com.springboot.bankproject.model.BankAccount;
 import com.springboot.bankproject.model.Branch;
@@ -82,6 +79,4 @@ public class BranchRepository implements BranchDAO{
 		     	return rowDeleted==1;
 
 		}
-
-
 }

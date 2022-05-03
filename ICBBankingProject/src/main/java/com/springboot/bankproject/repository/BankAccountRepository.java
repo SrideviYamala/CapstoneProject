@@ -20,6 +20,7 @@ public class BankAccountRepository implements BankAccountDAO{
 	    public BankAccountRepository() throws SQLException, ClassNotFoundException {
 	        this.conn = DatabaseConnection.getConnection();
 	    }
+	    
 //		public int create(BankAccount bankAccount)
 //	            throws SQLException{
 //			  PreparedStatement ps = conn.prepareStatement("insert into BankAccounts values(?,?,?,?)");
@@ -31,7 +32,7 @@ public class BankAccountRepository implements BankAccountDAO{
 //		        return ps.executeUpdate();
 //		}
 
-		 public int update(Integer accountNo,Integer branchCode)
+		public int update(Integer accountNo,Integer branchCode)
 	            throws SQLException{
 	    	 PreparedStatement ps = conn.prepareStatement(
 	                 "UPDATE worker SET branchCode = ? WHERE accNo= ?");
@@ -58,9 +59,11 @@ public class BankAccountRepository implements BankAccountDAO{
 		        int rowsUpdated = ps.executeUpdate();
 			     return rowsUpdated;
 		}
+		
 		@Override
 		public List<BankAccount> showAllBankAccounts(int branchCode) throws SQLException{
-			 PreparedStatement ps = conn.prepareStatement("""
+			 PreparedStatement ps = conn.prepareStatement(
+					  """
                         select * from bankaccounts where branchCode=?
                       """);
              ps.setInt(1,branchCode);

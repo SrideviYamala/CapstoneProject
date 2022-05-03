@@ -2,10 +2,8 @@ package com.springboot.bankproject.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import com.springboot.bankproject.model.BankAccount;
 import com.springboot.bankproject.model.Branch;
-//import com.springboot.bankproject.model.Customer;
 
 public interface BranchDAO {
 
@@ -14,6 +12,7 @@ public interface BranchDAO {
 	public Branch viewDetailsByIFSC(String ifscCode) throws SQLException;
 
 //	public Boolean updateBranchManager(Branch branch) throws SQLException;
+	
 	public List<Branch> showBranches() throws SQLException;
 
 	public Boolean deleteByIFSC(String ifscCode) throws SQLException;

@@ -2,9 +2,7 @@ package com.springboot.bankproject.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import com.springboot.bankproject.model.Customer;
-
 
 public interface CustomerDAO {
 //	public String welcome(Integer customerId)

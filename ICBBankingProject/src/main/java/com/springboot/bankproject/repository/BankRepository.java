@@ -6,15 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.springboot.bankproject.model.Address;
 import com.springboot.bankproject.dao.BankDAO;
 import com.springboot.bankproject.model.Bank;
-import com.springboot.bankproject.model.Employee;
 import com.springboot.bankproject.util.DatabaseConnection;
-
 
 @Repository
 public class BankRepository implements BankDAO{
@@ -72,7 +68,5 @@ public class BankRepository implements BankDAO{
 	        	BankList.add( new Bank(rs.getInt(1),rs.getString(2),AddressRepository.processAddress(rs.getString("MainOfficeAddress"))));
 	        }
 	        return BankList;
-	    }
-       
-	    
+	    }    
 }

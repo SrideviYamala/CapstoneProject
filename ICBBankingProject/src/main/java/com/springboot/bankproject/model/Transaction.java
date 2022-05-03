@@ -28,19 +28,6 @@ public class Transaction {
 		this.transactionNo = transactionNo;
 		this.transactionType = transactionType;
 	}
-	public Transaction(Integer accountNo, Double amount, Date date, Integer transactionNo) {
-		super();
-		this.accountNo = accountNo;
-		this.amount = amount;
-		this.date = date;
-		this.transactionNo = transactionNo;
-	}
-	public Transaction(Integer transactionNo, Integer accountNo, Date date) {
-		super();
-		this.accountNo = accountNo;
-		this.date = date;
-		this.transactionNo = transactionNo;
-	}
 
 	public Integer getAccountNo() {
 		return accountNo;

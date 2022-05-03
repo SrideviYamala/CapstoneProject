@@ -15,7 +15,6 @@ import com.springboot.bankproject.util.DatabaseConnection;
 @Repository
 public class TransactionRepository implements TransactionDAO
 {
-	 
 		private final Connection conn; 
 	    
 	    public TransactionRepository() throws SQLException, ClassNotFoundException {
@@ -26,7 +25,7 @@ public class TransactionRepository implements TransactionDAO
 	    public Integer deposit(Integer accountNo,Double amount)
 	            throws SQLException{
 	    		
-	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE transactions SET amount=amount+?  where ACCNO=?");
+	    	  PreparedStatement ps = conn.prepareStatement("UPDATE bankaccounts SET accBalance=accBalance+?  where ACCNO=?");
 	    	  ps.setDouble(1, amount);
 		       ps.setInt(2, accountNo);
 		       int rowsUpdated = ps.executeUpdate();
@@ -37,7 +36,7 @@ public class TransactionRepository implements TransactionDAO
 	    public Integer withDraw(Integer accountNo,Double amount)
 	            throws SQLException{
 	    	
-	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE transactions SET amount=amount-?  where ACCNO=?");
+	    	  PreparedStatement ps = conn.prepareStatement("UPDATE bankaccounts SET accBalance=accBalance-?  where ACCNO=?");
 	    	  ps.setDouble(1, amount);
 		       ps.setInt(2, accountNo);
 		       int rowsUpdated = ps.executeUpdate();
@@ -55,5 +54,4 @@ public class TransactionRepository implements TransactionDAO
 			        }
 			        return transactionList;
 		}
-
 }

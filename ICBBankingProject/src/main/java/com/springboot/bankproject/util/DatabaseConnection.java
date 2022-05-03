@@ -1,12 +1,11 @@
 package com.springboot.bankproject.util;
 
-
 import java.sql.*;
 
 public class DatabaseConnection {
-    private static final String url = "jdbc:mysql://localhost:3307/bankingproject";
+    private static final String url = "jdbc:mysql://localhost:3306/bankingproject";
     private static final String username = "root";
-    private static final String password = "1234";
+    private static final String password = "root";
     private static Connection connection=null;
     private DatabaseConnection(){}
 

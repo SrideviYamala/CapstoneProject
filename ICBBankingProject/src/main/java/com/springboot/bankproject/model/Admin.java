@@ -39,6 +39,5 @@ public class Admin {
 	public String toString() {
 		return "Admin [adminId=" + adminId + ", name=" + name + ", bankCode=" + bankCode + "]";
 	}
-	
-	
+
 }

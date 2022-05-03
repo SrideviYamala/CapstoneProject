@@ -1,20 +1,15 @@
 package com.springboot.bankproject.repository;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.springboot.bankproject.dao.ReversalRequestDAO;
-import com.springboot.bankproject.model.Employee;
 import com.springboot.bankproject.model.ReversalRequests;
 import com.springboot.bankproject.model.Transaction;
-
 import com.springboot.bankproject.util.DatabaseConnection;
 
 @Repository
@@ -31,10 +26,8 @@ public class ReversalRequestRepository implements ReversalRequestDAO{
 			  List<ReversalRequests> transactionList = new ArrayList<>();
 				 ResultSet rs = ps.executeQuery();
 			        while (rs.next()) {
-			        	transactionList.add( new ReversalRequests(rs.getInt(1),rs.getInt(2),rs.getDate(6),new Transaction(rs.getInt(2),rs.getInt(3),rs.getDate(4))));
+			        	transactionList.add( new ReversalRequests(rs.getInt(1),rs.getInt(2),rs.getDate(6),new Transaction(rs.getInt(2),rs.getDate(4),rs.getInt(3),rs.getString(5))));
 			        }
 			        return transactionList;
 		}
-	
-
 }
