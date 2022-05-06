@@ -13,7 +13,7 @@
 	</head>
 	
 	<body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header ">
             <a class="navbar-brand " href="#">Admin Portal</a>
@@ -31,21 +31,28 @@
 </nav>
 <br>
 <br>
-<br>	
-		<div class="container">
+<div class="container">
 		
-			<h3>List Employees</h3>
+			<h2 class="display-6 text-primary text">List Employees</h2>
 			
 			<hr/>
-			<a th:href="@{addEmployeeForm}" class="btn btn-primary">Add Employee</a>
-			<br/><br/>
-			<table class="table table-bordered table-striped" id="employeeTable">
-			
-				<thead>
+			<div class="col">
+			<div class="row">
+                <form th:action="@{addEmployeeForm}" th:object="${bankNames}" method="GET">
+                    <input type="hidden" th:value="${bankNames}" name="bankNames" />
+                    <button type="submit" class="btn btn-primary">Add Employee</button>
+                </form>
+                </div>
+            </div>
+
+			<br/>
+			<table class="table table-bordered table-striped" id="EmployeesTable">
+			<thead>
 					<tr>
 						<th>EmployeeID</th>
 						<th>Name</th>
 						<th>BranchCode</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,9 +61,21 @@
 						<td th:text="${employee.employeeName}" />
 						<td th:text="${employee.branchCode}" />
 					<td>
-						<a th:href="@{showUpdateForm(employeeId=${employee.employeeId})}" class="btn btn-info">Update</a>
-							
-						<a th:href="@{deleteEmployee(employeeId=${employee.employeeId})}" class="btn btn-danger ml-2">Delete</a>
+					<div class="row form-group">
+						<div class="col-lg-3">
+						<form th:action="@{showUpdateForm}" th:object="${employee}" method="GET">
+                    		<input type="hidden" th:value="${employee.employeeId}" name="employeeId" />
+                    		<button type="submit" class="btn btn-info btn-block">Update</button>
+               			 </form>
+						</div>
+						<div class="col-lg-3">
+						<form th:action="@{deleteEmployee}" th:object="${bankNames}" method="GET">
+                    		<input type="hidden" th:value="${bankNames}" name="bankNames" />
+                    		<input type="hidden" th:value="${employee.employeeId}" name="employeeId" />
+                    		<button type="submit" class="btn btn-danger ml-2 btn-block">Delete</button>
+               			 </form>
+						</div>
+					</div>	
 					</td>
 					</tr>
 				</tbody>
@@ -68,7 +87,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$("#employeeTable").DataTable({
+				$("#EmployeesTable").DataTable({
 						'aoColumnDefs': [{
         				'bSortable': false,
         				'aTargets': [-1] /* 1st one, start by the right */

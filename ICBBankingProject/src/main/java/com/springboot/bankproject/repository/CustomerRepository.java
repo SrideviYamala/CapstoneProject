@@ -4,11 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+//import java.util.ArrayList;
+//import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
+
 import com.springboot.bankproject.dao.CustomerDAO;
+import com.springboot.bankproject.model.Address;
 import com.springboot.bankproject.model.Customer;
+import com.springboot.bankproject.model.Employee;
 import com.springboot.bankproject.util.DatabaseConnection;
 
 @Repository
@@ -46,15 +52,18 @@ public class CustomerRepository implements CustomerDAO{
 			        return customerList;
 		}
 	    
-//		public Customer viewProfile(Integer customerId)
-//	            throws SQLException{
-//	       
-//	        PreparedStatement ps = conn.prepareStatement("select name,street,city,state,country,pincode,customerId from customers INNER JOIN Address on (Address.addressId=Customers.Address) where customerid=?");
-//	        ps.setInt(1,customerId);
-//	        ResultSet rs = ps.executeQuery();
-//	        rs.next();
-//	        return new Customer(rs.getString(1),new Address(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6)), rs.getInt(7));
-//		}
+	    
+	    
+		public Customer viewProfile(Integer customerId)
+	            throws SQLException{
+	       
+	        PreparedStatement ps = conn.prepareStatement("select * from customers where customerid=?");
+	        ps.setInt(1,customerId);
+	        ResultSet rs = ps.executeQuery();
+	        rs.next();
+	        return new Customer(rs.getInt(1),rs.getString(2),AddressRepository.processAddress(rs.getString("address")));
+	        
+		}
 
 //	    public int updateProfile(String name,Address address)
 //	            throws SQLException{

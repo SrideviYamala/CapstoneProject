@@ -1,6 +1,7 @@
 package com.springboot.bankproject.controllers;
 
 
+import java.sql.SQLException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springboot.bankproject.model.Branch;
 import com.springboot.bankproject.model.Employee;
 
 import com.springboot.bankproject.services.AdminService;
@@ -56,9 +58,10 @@ public class AdminController {
 		return mav;
 	}
 	@GetMapping("showAdminForm")
-	public ModelAndView showAdminDetails(@RequestParam Integer adminId) {
+	public ModelAndView showAdminDetails(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("admin-details");
-		mav.addObject("admins",adminService.viewProfile(adminId));
+		mav.addObject("admins",adminService.viewProfile(Integer.parseInt(paramMap.getFirst("adminId"))));
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
 		return mav;
 	}
 	@GetMapping("/customers/list")
@@ -76,9 +79,10 @@ public class AdminController {
 	}
 
 	@GetMapping("employees/list")
-	public ModelAndView getAllEmployees(@RequestParam Map<String, String> paramMap) {
+	public ModelAndView getAllEmployees(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("list-employees");
-		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.get("bankNames")));
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
 		return mav;
 	}
 
@@ -88,36 +92,99 @@ public class AdminController {
 		mav.addObject("reversalRequests", reversalRequestService.getRequests());
 		return mav;
 	}
-
+	
+	
+	
 	@GetMapping("employees/addEmployeeForm")
-	public ModelAndView addEmployeeForm() {
+	public ModelAndView addEmployeeForm(@RequestParam Map<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("add-employee-form");
 		Employee newEmployee = new Employee();
+		mav.addObject("bankNames",paramMap.get("bankNames"));
 		mav.addObject("employee", newEmployee);
 		mav.addObject("branches",branchService.showBranches());
 		return mav;
 	}
 	
 	@PostMapping("employees/saveEmployee")
-	public String saveEmployee(@ModelAttribute Employee employee) {
+	public ModelAndView saveEmployee(@RequestParam MultiValueMap<String, String> paramMap,@ModelAttribute Employee employee) {
+		ModelAndView mav = new ModelAndView("save-list-employees");
 		employeeService.createEmployee(employee);
-		ModelAndView mav = new ModelAndView("list-employees");
-		return "redirect:/employee/list";
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
 	}
 	
 	@GetMapping("employees/showUpdateForm")
-	public ModelAndView showUpdateForm(@RequestParam Integer employeeId) {
-		ModelAndView mav = new ModelAndView("add-employee-form");
-		Employee employee = employeeService.getEmployeeById(employeeId);
+	public ModelAndView showUpdateForm(@RequestParam MultiValueMap<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("update-employee-form");
+		Employee employee = employeeService.getEmployeeById(Integer.parseInt(paramMap.getFirst("employeeId")));
+		mav.addObject("bankNames",paramMap.get("bankNames"));
 		mav.addObject("employee", employee);
 		return mav;
 	}
 	
-	@GetMapping("employees/deleteEmployee")
-	public String deleteEmployee(@RequestParam Integer employeeId) {
-		employeeService.deleteEmployee(employeeId);
-		ModelAndView mav = new ModelAndView("list-employees");
-		return "redirect:employee/list";
+	@GetMapping("employees/saveUpdate")
+	public ModelAndView saveUpdate(@RequestParam MultiValueMap<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("save-list-employees");
+		//employeeService.updateEmployee();
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
 	}
+	
+	@GetMapping("employees/deleteEmployee")
+	public ModelAndView deleteEmployee(@RequestParam MultiValueMap<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("list-employees");
+		employeeService.deleteEmployee(Integer.parseInt(paramMap.getFirst("employeeId")));
+		mav.addObject("bankNames",paramMap.get("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
+	}
+	
+	
+	@GetMapping("branches/addBranchForm")
+	public ModelAndView addBranchForm(@RequestParam Map<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("add-branch-form");
+		Branch newBranch = new Branch();
+		mav.addObject("bankNames",paramMap.get("bankNames"));
+		mav.addObject("branch", newBranch);
+		//mav.addObject("branches",branchService.showBranches());
+		mav.addObject("branches", branchService.showBranchesByBankName(paramMap.get("bankNames")));
+		return mav;
+	}
+	
+	@PostMapping("branches/saveBranch")
+	public ModelAndView saveBranch(@RequestParam MultiValueMap<String, String> paramMap,@ModelAttribute Branch branch) throws SQLException {
+		ModelAndView mav = new ModelAndView("save-list-branches");
+		branchService.createBranch(branch);
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("branch", branchService.showBranchesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
+	}
+	
+//	@GetMapping("branches/showUpdateForm")
+//	public ModelAndView showUpdateBranch(@RequestParam MultiValueMap<String, String> paramMap) {
+//		ModelAndView mav = new ModelAndView("add-branch-form");
+//		Branch branch = branchService.getEmployeeById(Integer.parseInt(paramMap.getFirst("branchCode")));
+//		mav.addObject("bankNames",paramMap.get("bankNames"));
+//		mav.addObject("employee", employee);
+//		return mav;
+//	}
+	
+	@GetMapping("branches/deleteBranch")
+	public ModelAndView deleteBranch(@RequestParam MultiValueMap<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("list-branches");
+		branchService.deleteByIFSC(Integer.parseInt(paramMap.getFirst("branchCode")));
+		mav.addObject("bankNames",paramMap.get("bankNames"));
+		mav.addObject("branches", branchService.showBranchesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

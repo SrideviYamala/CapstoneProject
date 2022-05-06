@@ -55,7 +55,7 @@ public class EmployeeRepository implements EmployeeDAO{
 	}
 
 	@Override
-	public Employee getEmployeeById(Integer empId)  throws SQLException{
+	public Employee getEmployeeById(Integer empId) throws SQLException{
 		 PreparedStatement ps = conn.prepareStatement("SELECT * FROM employee WHERE  EmployeeID=?");
 	        ps.setInt(1,empId);
 	        ResultSet rs = ps.executeQuery();

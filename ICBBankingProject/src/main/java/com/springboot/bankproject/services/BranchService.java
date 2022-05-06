@@ -55,7 +55,7 @@ public class BranchService {
 	}
 
 
-	public Boolean deleteByIFSC(String ifscCode)  {
+	public Boolean deleteByIFSC(int ifscCode)  {
 		try {
 			return branchRepo.deleteByIFSC(ifscCode);
 		}

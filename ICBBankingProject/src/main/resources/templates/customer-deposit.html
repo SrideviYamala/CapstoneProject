@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<title>Employee Portal</title>
+		<title>Customer Portal</title>
 		
 		<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
@@ -9,26 +9,20 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		<div class="bg-image" 
-     style="background-image: url('https://thumbs.dreamstime.com/b/ash-white-marble-texture-small-scratches-veins-clean-background-image-stone-backgrounds-173710341.jpg');
-            height: 100vh">
 			 <main class="col-md-5 mx-auto">
-		 <br>
-	<br>
-	<br>
+		 
         <header class="text-center">
-            <h1 class="display-6 text-primary text ">Employee Portal</h1>
-            <h6 class="text-secondary">Login page </h6>
+            <h1 class="display-6 text-primary text ">Customer Portal</h1>
+            <h6 class="text-secondary">login page </h6>
         </header>
         <hr />
         
         <section>
         <tbody>
         
-        <form th:action="@{/employee/viewProfile}" th:object="${employees}" method="GET">
+        <form th:action="@{/customer/viewProfile}" th:object="${customer}" method="GET">
         
-        <div alight="left" class="row">
-        <div class="container" alight="left">
+         <div alight="left">
 			<tr>
 				<label class= "form-Label" >BankName</label>
 			<td>
@@ -40,32 +34,22 @@
 			</select>
 			</td>
 			</tr>
-			<br>
-			
-			</div>
-		<div class="container" alight="left">
-			<tr>
-				<label class= "form-Label" >BranchCode</label>
-			<td>
-			<select name="branches" id="branches" class="form-control">
-			<option th:each="branches : ${branches}"
-			th:value="${branches.branchCode}"
-			th:text="${branches.branchCode}">
-			</option>
-			</select>
-			</td>
-			</tr>
-		</div>
 		</div>
          
           <hr>
-          
-          <div id="employeeId" name="employeeId" class="form-group">
-          <label class= "form-Label" >Enter employeeId</label>
-          <input type="text" id="employeeId
-          " name="employeeId" class="form-control col-4 mb-4" placeholder="Enter employeeId" />
+          <div class="container">
+          <label class= "form-Label row" >AccountNo</label>
+             <div id="accountNo" name="accountNo" class="form-group row">
+          <input type="text" id="accountNo" name="accountNo" class="form-control col-4 mb-4" placeholder="Enter AccountNo" />
           
           </div>
+          <label class= "form-Label row" >CustomerID</label>
+             <div id="customerId" name="customerId" class="form-group row">
+          <input type="text" id="customerId" name="customerId" class="form-control col-4 mb-4" placeholder="Enter customerId" />
+          
+          </div>
+          </div>
+       
           
         <button type="submit" class="btn btn-primary col-2">Login</button>
           
@@ -80,6 +64,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </div>
 	</body>
 </html>

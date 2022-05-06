@@ -15,7 +15,7 @@ public interface BranchDAO {
 	
 	public List<Branch> showBranches() throws SQLException;
 
-	public Boolean deleteByIFSC(String ifscCode) throws SQLException;
+	public Boolean deleteByIFSC(int ifscCode) throws SQLException;
 
 	public List<BankAccount> showBankAccounts() throws SQLException;
 

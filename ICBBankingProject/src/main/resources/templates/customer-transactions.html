@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
-		<title>List BankAccounts</title>
+		<title>List Transactions</title>
 		
 		<link rel="stylesheet" 
 			type="text/css" 
@@ -13,52 +13,51 @@
 	</head>
 	
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header ">
-            <a class="navbar-brand " href="#">Employee Portal</a>
+            <a class="navbar-brand " href="#">Customer Portal</a>
         </div>
         <div>
-            <ul class="navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a th:href="@{/employee/index}">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
-                    </a>
-                </li>
-            </ul>
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                <a th:href="@{/customer/index}">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
+                </a></li>
+        </ul>
         </div>
     </div>
 </nav>
 <br>
 <br>
-
+		
 		<div class="container">
 		
-			<h2 class="display-6 text-primary text">List BankAccounts</h3>
+			
+			<h2 class="display-6 text-primary text">List Transactions</h2>
 			
 			<hr/>
-
+			
 			<br/>
-			<table class="table table-bordered table-striped" id="bankAccTable">
+			<table class="table table-bordered table-striped" id="transactionsTable">
 			
 				<thead>
 					<tr>
-						<th>Customer ID</th>
-						<th>BranchCode</th>
-						<th>Account No</th>
-						<th>Type </th>
-						<th>Account Balance </th>
+						<th>AccountNo</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>TransactionNo</th>
+						<th>TransactionType</th>
 						
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="bankAccounts: ${bankAccounts}">
-						<td th:text="${bankAccounts.customerId}" />
-						<td th:text="${bankAccounts.branchCode}" />
-						<td th:text="${bankAccounts.accountNo}" />
-						<td th:text="${bankAccounts.type}" />
-						<td th:text="${bankAccounts.accBalance}" />
-					
+					<tr th:each="transactions: ${transactions}">
+						<td th:text="${transactions.accountNo}" />
+						<td th:text="${transactions.amount}" />
+						<td th:text="${transactions.date}" />
+						<td th:text="${transactions.transactionNo}" />
+						<td th:text="${transactions.transactionType}" />
 					</tr>
 				</tbody>
 				
@@ -69,7 +68,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$("#bankAccTable").DataTable({
+				$("#transactionsTable").DataTable({
 						'aoColumnDefs': [{
         				'bSortable': false,
         				'aTargets': [-1] /* 1st one, start by the right */

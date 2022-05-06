@@ -72,9 +72,9 @@ public class BranchRepository implements BranchDAO{
 		}
 
 		@Override
-		public Boolean deleteByIFSC(String ifscCode) throws SQLException {
+		public Boolean deleteByIFSC(int ifscCode) throws SQLException {
 			PreparedStatement ps=conn.prepareStatement("DELETE FROM branches WHERE branchCode = ?");
-			 ps.setString(1, ifscCode);
+			 ps.setInt(1, ifscCode);
 		        int rowDeleted = ps.executeUpdate();
 		     	return rowDeleted==1;
 

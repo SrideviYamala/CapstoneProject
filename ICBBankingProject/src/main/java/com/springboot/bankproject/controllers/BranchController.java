@@ -43,7 +43,7 @@ public class BranchController {
 	}
 
 	@DeleteMapping("/{ifscCode}")
-	public boolean deleteBranchUsingIFSC(@PathVariable String ifscCode) {
+	public boolean deleteBranchUsingIFSC(@PathVariable int ifscCode) {
 		return branchService.deleteByIFSC(ifscCode);
 	}
 }

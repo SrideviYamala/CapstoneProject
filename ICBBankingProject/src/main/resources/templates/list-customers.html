@@ -31,14 +31,14 @@
 </nav>
 <br>
 <br>
-<br>
+
 	<div class="container">
 		
-			<h3>List Customers</h3>
+			<h2  class="display-6 text-primary text ">List Customers</h2>
 			
 			<hr/>
 			
-			<br/><br/>
+			<br/>
 			<table class="table table-bordered table-striped" id="customersTable">
 			
 				<thead>
@@ -65,7 +65,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$("#employeeTable").DataTable({
+				$("#customersTable").DataTable({
 						'aoColumnDefs': [{
         				'bSortable': false,
         				'aTargets': [-1] /* 1st one, start by the right */
