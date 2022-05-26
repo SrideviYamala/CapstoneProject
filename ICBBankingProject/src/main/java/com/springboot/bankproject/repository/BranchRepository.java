@@ -34,7 +34,7 @@ public class BranchRepository implements BranchDAO{
 			ps.setString(1, bankName);
 			ResultSet rs = ps.executeQuery();
 		        while (rs.next()) {
-		            branchList.add(new Branch(rs.getInt(1),AddressRepository.processAddress(rs.getString("address")),rs.getString(3),rs.getString(4),rs.getInt(5)));
+		            branchList.add(new Branch(rs.getInt(1),rs.getString(3),rs.getString(4),rs.getInt(5)));
 		        }
 		        return branchList;
 		}
@@ -46,7 +46,7 @@ public class BranchRepository implements BranchDAO{
 			PreparedStatement ps=conn.prepareStatement("SELECT * FROM branches");
 			 ResultSet rs = ps.executeQuery();
 		        while (rs.next()) {
-		            branchList.add(new Branch(rs.getInt(1),AddressRepository.processAddress(rs.getString("address")),rs.getString(3),rs.getString(4),rs.getInt(5)));
+		            branchList.add(new Branch(rs.getInt(1),rs.getString(3),rs.getString(4),rs.getInt(5)));
 		        }
 		        return branchList;
 		}
@@ -56,7 +56,7 @@ public class BranchRepository implements BranchDAO{
 			PreparedStatement ps=conn.prepareStatement("SELECT * FROM branches WHERE branchCode = ?");
 		     ResultSet rs = ps.executeQuery();
 		     rs.next();
-		     return new Branch(rs.getInt(1),AddressRepository.processAddress(rs.getString("address")),rs.getString(3),rs.getString(4),rs.getInt(5));
+		     return new Branch(rs.getInt(1),rs.getString(3),rs.getString(4),rs.getInt(5));
 		}
 
 

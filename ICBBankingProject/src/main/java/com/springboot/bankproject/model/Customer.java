@@ -6,7 +6,7 @@ public class Customer {
 	Integer customerId;
     String name;
     Address address;
-    
+
     List<BankAccount> bankAccounts;
 
     public Customer(Integer customerId,String name, Address address) {
@@ -14,7 +14,7 @@ public class Customer {
         this.address = address;
         this.customerId = customerId;
     }
-
+  
     public String getName() {
 		return name;
 	}

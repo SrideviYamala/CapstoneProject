@@ -61,7 +61,14 @@ public class EmployeeRepository implements EmployeeDAO{
 	        ResultSet rs = ps.executeQuery();
 	        rs.next();
 	        return  new Employee(rs.getInt(1),rs.getString(2),rs.getInt(3));
-
+	}
+	@Override
+	public Employee getEmployeeByName(String employeeName) throws SQLException{
+		 PreparedStatement ps = conn.prepareStatement("SELECT * FROM employee WHERE  EmployeeName=?");
+	        ps.setString(1,employeeName);
+	        ResultSet rs = ps.executeQuery();
+	        rs.next();
+	        return  new Employee(rs.getInt(1),rs.getString(2),rs.getInt(3));
 	}
 
 	@Override
@@ -76,11 +83,18 @@ public class EmployeeRepository implements EmployeeDAO{
 	}
 
 	@Override
-	public boolean updateEmployee(Integer empId, String name) throws SQLException{
-		PreparedStatement ps = conn.prepareStatement("UPDATE employees SET name= ? WHERE  EmployeeID= ? ");
+	public Employee updateEmployee(Integer empId, String name) throws SQLException{
+		PreparedStatement ps = conn.prepareStatement("UPDATE employee SET name= ? WHERE  EmployeeID= ? ");
 		 ps.setInt(2,empId);
 		 ps.setString(1, name);
 	        int rowsUpdated = ps.executeUpdate();
-		     return rowsUpdated==1;
+		     return null;
+	}
+	@Override
+	public Employee updateEmployeeName(String name) throws SQLException{
+		PreparedStatement ps = conn.prepareStatement("UPDATE employee SET name= ? ");
+		 ps.setString(1, name);
+	        int rowsUpdated = ps.executeUpdate();
+		     return null;
 	}
 }

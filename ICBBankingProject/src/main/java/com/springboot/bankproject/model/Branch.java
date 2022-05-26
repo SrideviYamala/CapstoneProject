@@ -15,10 +15,18 @@ public class Branch implements Comparable<Branch> {
     public Branch() {
     }
 
-    public Branch(Integer branchCode, Address address, String manager, String headOffice, Integer bankCode) {
+    public Branch(Integer branchCode,Address address, String manager, String headOffice, Integer bankCode) {
 		super();
 		this.branchCode = branchCode;
 		this.address = address;
+		this.manager = manager;
+		this.headOffice = headOffice;
+		this.bankCode = bankCode;
+		
+	}
+    public Branch(Integer branchCode,String manager, String headOffice, Integer bankCode) {
+		super();
+		this.branchCode = branchCode;
 		this.manager = manager;
 		this.headOffice = headOffice;
 		this.bankCode = bankCode;

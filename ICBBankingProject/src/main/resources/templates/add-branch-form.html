@@ -32,17 +32,16 @@
 			<h3>Add New Branch</h3>
 			<hr/>
 			
-			<form th:action="@{saveBranch}" th:object="${branches}" method="POST">
+			<form th:action="@{saveBranch}" th:object="${branch}" method="POST">
 				
-				<input type="text" th:field="*{BranchCode}" class="form-control col-4 mb-4" placeholder="Enter BranchCode" />
+				<input type="text" th:field="*{branchCode}" class="form-control col-4 mb-4" placeholder="Enter BranchCode" />
 				
-				<input type="text" th:field="*{BankCode}" class="form-control col-4 mb-4" placeholder="Enter BankCode" />
+				<input type="text" th:field="*{bankCode}" class="form-control col-4 mb-4" placeholder="Enter BankCode" />
 				
-				<input type="text" th:field="*{Manager}" class="form-control col-4 mb-4" placeholder="Enter Manager Name" />
+				<input type="text" th:field="*{manager}" class="form-control col-4 mb-4" placeholder="Enter Manager Name" />
 				
-				<input type="text" th:field="*{HeadOffice}" class="form-control col-4 mb-4" placeholder="Enter HeadOffice" />
+				<input type="text" th:field="*{headOffice}" class="form-control col-4 mb-4" placeholder="Enter HeadOffice" />
 				
-				<input type="text" th:field="*{Address}" class="form-control col-4 mb-4" placeholder="Enter Address" />
 				
 				<div class="col">
 				

@@ -41,10 +41,11 @@
 				<input type="text" th:field="*{BranchCode}" class="form-control col-4 mb-4" placeholder="Enter BranchCode" />
 				
 				<div class="col">
+				
 			<div class="row">
                 <form th:action="@{addEmployeeForm}" th:object="${bankNames}" method="GET">
                     <input type="hidden" th:value="${bankNames}" name="bankNames" />
-                    <button type="submit" class="btn btn-info btn-primary">Save</button>
+                    <button type="submit" class="btn btn-info btn-lg btn-primary">Save</button>
                 </form>
                 </div>
             </div>

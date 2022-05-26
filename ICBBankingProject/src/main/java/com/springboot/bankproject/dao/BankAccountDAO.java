@@ -2,9 +2,16 @@ package com.springboot.bankproject.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
 import com.springboot.bankproject.model.BankAccount;
 
+
 public interface BankAccountDAO {
+ 	public Boolean deposit(Double amount, Integer accNo)
+            throws SQLException;
+
+    public Boolean withDraw(Double amount, Integer accNo)
+            throws SQLException;
 	
 //	public int create(BankAccount bankAccount)
 //            throws SQLException;
@@ -20,4 +27,5 @@ public interface BankAccountDAO {
 
 	public List<BankAccount> showAllBankAccounts(int branchCode) 
 			throws SQLException;
+
 }

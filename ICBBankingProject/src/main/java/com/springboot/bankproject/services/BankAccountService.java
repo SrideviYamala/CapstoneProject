@@ -23,8 +23,35 @@ public class BankAccountService {
 			return null;
 		}
 	}
-
-  
+	public List<BankAccount> showAllBankAccountsById(int customerId){
+		try {
+			return bankAccountRepo.showAllBankAccountsById(customerId);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	 public Boolean deposit(Double amount, Integer accNo)
+     {
+		try {
+			return bankAccountRepo.deposit(amount,accNo);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	
+}
+	 public Boolean withDraw(Double amount, Integer accNo) {
+		 try {
+			 return bankAccountRepo.withDraw(amount,accNo);
+		 }
+		 catch(Exception e) {
+			 System.out.println(e);
+			 return false;
+		 }
+}
 	
 
 	 public Integer update(Integer accountNo,Integer branchCode) {
@@ -57,7 +84,18 @@ public class BankAccountService {
 		return null;
 	}
 	}
-  
 
+	
+	 public BankAccount showBal(Integer customerId) {
+			try {
+				return bankAccountRepo.showBalance(customerId);
+			}
+			catch(Exception e) {
+				System.out.println(e);
+				return null;
+			}
+	    }
+
+	
   
 }

@@ -55,6 +55,17 @@ public class EmployeeService {
 		}
 
 	}
+	public Employee getEmployeeByName(String empName){
+		try {
+			return employeeRepo.getEmployeeByName(empName);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+
+	}
+
 
 	public List<Employee> showAllEmployees(){
 		try {
@@ -67,13 +78,22 @@ public class EmployeeService {
 	}
 
 	
-	public boolean updateEmployee(Integer empId, String name){
+	public Employee updateEmployee(Integer empId, String name){
 		try {
 			return employeeRepo.updateEmployee(empId,name);
 		}
 		catch(Exception e) {
 			System.out.println(e);
-			return false;
+			return null;
+		}
+	}
+	public Employee updateEmployeeName( String name){
+		try {
+			return employeeRepo.updateEmployeeName(name);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return null;
 		}
 	}
 }

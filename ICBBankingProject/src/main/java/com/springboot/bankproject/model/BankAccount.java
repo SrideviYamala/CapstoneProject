@@ -8,12 +8,24 @@ public class BankAccount {
     Integer branchCode;
     Integer customerId;
     double accBalance;
-    
+
     List<Transaction> transactions;
     
 	public BankAccount() {
-		super();
+		this.accountNo = null;
+		this.type = "";
+		this.branchCode = null;
+		this.customerId = null;
+		this.accBalance = 0.0;
 	}
+	
+
+	public BankAccount(double accBalance) {
+		super();
+		this.accBalance = accBalance;
+	}
+
+
 	public BankAccount(Integer accountNo, String type, Integer branchCode, Integer customerId, double accBalance,
 			List<Transaction> transactions) {
 		super();
@@ -24,6 +36,14 @@ public class BankAccount {
 		this.accBalance = accBalance;
 		this.transactions = transactions;
 	}
+	public BankAccount(Integer accountNo, String type, Integer branchCode, Integer customerId,double accBalance) {
+		super();
+		this.accountNo = accountNo;
+		this.type = type;
+		this.branchCode = branchCode;
+		this.customerId = customerId;
+		this.accBalance=accBalance;
+	}
 	public BankAccount(Integer accountNo, String type, Integer branchCode, Integer customerId) {
 		super();
 		this.accountNo = accountNo;
@@ -31,6 +51,8 @@ public class BankAccount {
 		this.branchCode = branchCode;
 		this.customerId = customerId;
 	}
+	
+
 	public Integer getAccountNo() {
 		return accountNo;
 	}

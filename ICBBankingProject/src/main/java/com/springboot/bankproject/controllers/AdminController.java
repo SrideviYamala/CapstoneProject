@@ -66,7 +66,7 @@ public class AdminController {
 	}
 	@GetMapping("/customers/list")
 	public ModelAndView showAllCustomers(@RequestParam Map<String, String> paramMap) {
-		ModelAndView mav = new ModelAndView("list-customers");
+		ModelAndView mav = new ModelAndView("admin-list-customers");
 		mav.addObject("customers", customerService.showAllCustomersByBankName(paramMap.get("bankNames")));
 		return mav;
 	}
@@ -118,15 +118,15 @@ public class AdminController {
 	public ModelAndView showUpdateForm(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("update-employee-form");
 		Employee employee = employeeService.getEmployeeById(Integer.parseInt(paramMap.getFirst("employeeId")));
-		mav.addObject("bankNames",paramMap.get("bankNames"));
+		mav.addObject("bankNames", paramMap.getFirst("bankNames"));
 		mav.addObject("employee", employee);
 		return mav;
 	}
 	
 	@GetMapping("employees/saveUpdate")
-	public ModelAndView saveUpdate(@RequestParam MultiValueMap<String, String> paramMap) {
+	public ModelAndView saveUpdate(@RequestParam MultiValueMap<String, String> paramMap,@ModelAttribute Employee employee) {
 		ModelAndView mav = new ModelAndView("save-list-employees");
-		//employeeService.updateEmployee();
+		employeeService.updateEmployee(employee.getEmployeeId(),employee.getEmployeeName());
 		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
 		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
 		return mav;
@@ -142,13 +142,13 @@ public class AdminController {
 	}
 	
 	
+	
 	@GetMapping("branches/addBranchForm")
 	public ModelAndView addBranchForm(@RequestParam Map<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("add-branch-form");
 		Branch newBranch = new Branch();
 		mav.addObject("bankNames",paramMap.get("bankNames"));
 		mav.addObject("branch", newBranch);
-		//mav.addObject("branches",branchService.showBranches());
 		mav.addObject("branches", branchService.showBranchesByBankName(paramMap.get("bankNames")));
 		return mav;
 	}
@@ -158,7 +158,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("save-list-branches");
 		branchService.createBranch(branch);
 		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
-		mav.addObject("branch", branchService.showBranchesByBankName(paramMap.getFirst("bankNames")));
+		mav.addObject("branches", branchService.showBranchesByBankName(paramMap.getFirst("bankNames")));
 		return mav;
 	}
 	
@@ -168,6 +168,15 @@ public class AdminController {
 //		Branch branch = branchService.getEmployeeById(Integer.parseInt(paramMap.getFirst("branchCode")));
 //		mav.addObject("bankNames",paramMap.get("bankNames"));
 //		mav.addObject("employee", employee);
+//		return mav;
+//	}
+//	
+//	@GetMapping("employees/saveUpdate")
+//	public ModelAndView saveUpdateBranch(@RequestParam MultiValueMap<String, String> paramMap,@ModelAttribute Employee employee) {
+//		ModelAndView mav = new ModelAndView("save-list-branches");
+//		//employeeService.updateEmployee(employee.getEmployeeId(),employee.getEmployeeName());
+//		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+//		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
 //		return mav;
 //	}
 	

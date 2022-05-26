@@ -63,7 +63,8 @@
 					<td>
 					<div class="row form-group">
 						<div class="col-lg-3">
-						<form th:action="@{showUpdateForm}" th:object="${employee}" method="GET">
+						<form th:action="@{showUpdateForm}" th:object="${bankNames}" method="GET">
+                    		<input type="hidden" th:value="${bankNames}" name="bankNames" />
                     		<input type="hidden" th:value="${employee.employeeId}" name="employeeId" />
                     		<button type="submit" class="btn btn-info btn-block">Update</button>
                			 </form>

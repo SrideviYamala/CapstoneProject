@@ -12,9 +12,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.bankproject.dao.CustomerDAO;
-import com.springboot.bankproject.model.Address;
 import com.springboot.bankproject.model.Customer;
-import com.springboot.bankproject.model.Employee;
+import com.springboot.bankproject.model.BankAccount;
 import com.springboot.bankproject.util.DatabaseConnection;
 
 @Repository
